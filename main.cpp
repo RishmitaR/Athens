@@ -100,8 +100,8 @@ cv::dnn::Net loadDarknet(cv::Mat& img, cv::Mat& blob) {
     while (getline(ifs, line)) { classes.push_back(line); }
     
     // Give the configuration and weight files for the model
-    std::string modelConfiguration = "yolov2-tiny.cfg";
-    std::string modelWeights = "yolov2-tiny.weights";
+    std::string modelConfiguration = "cancer.cfg";
+    std::string modelWeights = "cancer_final.weights";
     
     // Load the network
     cv::dnn::Net net = cv::dnn::readNetFromDarknet(modelConfiguration, modelWeights);
@@ -129,15 +129,16 @@ void effeciencyInfo(cv::Mat& img, cv::dnn::Net& net) {
 int main(int argc, char *argv[]) {
     cv::Mat img;
     
-    if(argc < 1) {
-        cv::VideoCapture capture(0);
-        if (!capture.isOpened()) { //check if video device has been initialised
+    if(argc !=  1) {
+        img = cv::imread(argv[1]);
+    } else {
+    cv::VideoCapture capture(0);
+        if (!capture.isOpened()) { 
             std::cout << "cannot open camera";
         }
-        
+        std::cout << "Opening Camera" << std::endl;
         capture.read(img);
-    } else {
-        img = cv::imread(argv[1]);
+
     }    
 
 
