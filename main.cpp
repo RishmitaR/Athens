@@ -155,7 +155,7 @@ int main(int argc, char *argv[]) {
     
     effeciencyInfo(img, net);
 
-    cv::imshow("ahh", img);
+    cv::imshow("Cancer Detection Protocol", img);
 
     if(cv::waitKey(0) >= 0) {
         return 0;
